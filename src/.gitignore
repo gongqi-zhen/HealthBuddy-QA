@@ -1,0 +1,9 @@
+.firebase.js    # Firebase設定ファイル
+.next           # Next.js ビルド済みファイル
+.env.*.local    # Next.js ローカル環境変数ファイル
+.env.local      # Next.js ローカル環境変数ファイル
+node_modules/   # Node.js モジュールファイル
+#jsconfig.json  # JavaScriptコンパイラ設定ファイル,インポート対象ファイルパスをsrcから絶対パス指定で利用
+#next.config.js # Next.js 設定ファイル
+#                 実際に使用するモジュールだけを含んだ実行可能ファイルを作成する機能(standalone)
+#.gcloudignore  # Cloud BuildでBuildする際に開発用仮想マシンにあるnode_moduleの内容をコピーしない
