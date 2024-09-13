@@ -32,10 +32,10 @@ DATA='{"uid":"dummy_uid", "question":"血圧値は何を判断する値なので
 
 ```
 curl -X POST \
-> -H "$AUTH_HEADER" \
-> -H "Content-Type: application/json" \
-> -d "$DATA" \
-> -s $SERVICE_URL/api/question | jq .
+-H "$AUTH_HEADER" \
+-H "Content-Type: application/json" \
+-d "$DATA" \
+-s $SERVICE_URL/api/question | jq .
 
 -- result
 
@@ -71,13 +71,15 @@ curl -X POST \
 ```
 export SERVICE_ACCOUNT=eventarc-trigger@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
 gcloud eventarc triggers create trigger-finalized-healthbuddy-qa-backend-service \
-> --destination-run-service healthbuddy-qa-backend-service \
-> --destination-run-region asia-northeast1 \
-> --location asia-northeast1 \
-> --event-filters "type=google.cloud.storage.object.v1.finalized" \
-> --event-filters "bucket=$GOOGLE_CLOUD_PROJECT.appspot.com" \
-> --service-account $SERVICE_ACCOUNT \
-> --destination-run-path /api/post
+--destination-run-service healthbuddy-qa-backend-service \
+--destination-run-region asia-northeast1 \
+--location asia-northeast1 \
+--event-filters "type=google.cloud.storage.object.v1.finalized" \
+--event-filters "bucket=$GOOGLE_CLOUD_PROJECT.appspot.com" \
+--service-account $SERVICE_ACCOUNT \
+--destination-run-path /api/post
+
+
 Creating trigger [trigger-finalized-healthbuddy-qa-backend-service] in project [ai-hackathon-app-433705], location [asia-northeast1]...done.                                            
 WARNING: It may take up to 2 minutes for the new trigger to become active.
 ```
@@ -113,7 +115,8 @@ gcloud sql databases create docs_db --instance genai-app-db
 gcloud sql users create db-admin --instance genai-app-db --password genai-db-admin
 
 gcloud sql connect genai-app-db \
-> --user db-admin --database docs_db
+--user db-admin --database docs_db
+
 Allowlisting your IP for incoming connection for 5 minutes...⠶                                                       
 Allowlisting your IP for incoming connection for 5 minutes...done.                                                   
 Connecting to database with SQL user [db-admin].Password: 
@@ -123,13 +126,12 @@ Type "help" for help.
 
 docs_db=> CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION
-docs_db=> CREATE TABLE docs_embeddings(
-docs_db(> docid VARCHAR(1024) NOT NULL,
-docs_db(> uid VARCHAR(128) NOT NULL,
-docs_db(> filename VARCHAR(256) NOT NULL,
-docs_db(> page INTEGER NOT NULL,
-docs_db(> content TEXT NOT NULL,
-docs_db(> embedding vector(768) NOT NULL);
-CREATE TABLE
-docs_db=> exit
+
+CREATE TABLE docs_embeddings(
+ docid VARCHAR(1024) NOT NULL,
+ uid VARCHAR(128) NOT NULL,
+ filename VARCHAR(256) NOT NULL,
+ page INTEGER NOT NULL,
+ content TEXT NOT NULL,
+ embedding vector(768) NOT NULL);
 ```

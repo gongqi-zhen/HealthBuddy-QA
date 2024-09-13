@@ -15,7 +15,8 @@ export SERVICE_ACCOUNT=llm-app-frontend@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccoun
 ### .env.local
 ```
 gcloud run services list --platform managed \
-> --format="table[no-heading](URL)" --filter="metadata.name:healthbuddy-qa-backend-service"
+--format="table[no-heading](URL)" --filter="metadata.name:healthbuddy-qa-backend-service" 
+
 https://healthbuddy-qa-backend-service.*****.run.app
 
 HEALTHBUDDY_QA_API="https://healthbuddy-qa-backend-service.*****.run.app/api/question"
@@ -25,9 +26,11 @@ HEALTHBUDDY_QA_API="https://healthbuddy-qa-backend-service.*****.run.app/api/que
 ### service deploy
 ```
 gcloud run deploy healthbuddy-qa-frontend-service \
-> --image $REPO/healthbuddy-qa-frontend-service \
-> --service-account $SERVICE_ACCOUNT \
-> --region asia-northeast1 --allow-unauthenticated
+--image $REPO/healthbuddy-qa-frontend-service \
+--service-account $SERVICE_ACCOUNT \
+--region asia-northeast1 --allow-unauthenticated
+
+
 Deploying container to Cloud Run service [healthbuddy-qa-frontend-service] in project [ai-hackathon-app-433705] region [asia-northeast1]
 ✓ Deploying new service... Done.                                                                                                                                                         
   ✓ Creating Revision...                                                                                                                                                                 
