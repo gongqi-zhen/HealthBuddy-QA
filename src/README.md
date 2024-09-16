@@ -21,6 +21,8 @@ https://healthbuddy-qa-backend-service.*****.run.app
 
 HEALTHBUDDY_QA_API="https://healthbuddy-qa-backend-service.*****.run.app/api/question"
 
+HEALTHBUDDY_TRANSLATION_API="https://healthbuddy-qa-backend-service.*****.run.app/api/translation"
+
 ```
 
 ### service deploy
