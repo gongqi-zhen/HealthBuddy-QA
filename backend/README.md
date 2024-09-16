@@ -96,8 +96,8 @@ gcloud eventarc triggers create trigger-deleted-healthbuddy-qa-backend-service \
 --destination-run-path /api/post
 ```
 
-### [Project ID].appspot.comに新しいファイルを保存する、もしくは、既存のファイルを更新した際のイベント(finalized)について
-### イベント処理のタイムアウト秒を300秒に変更する。
+### [Project ID].appspot.comに新しいファイルを保存する、もしくは、既存のファイルを更新した際のイベント(finalized)について、イベント処理のタイムアウト秒を300秒に変更する。
+
 ### アップロードしたPDFファイルのページ数が多い場合、データベースへの登録に時間がかかる可能性があるため
 ```
 TRIGGER=trigger-finalized-healthbuddy-qa-backend-service

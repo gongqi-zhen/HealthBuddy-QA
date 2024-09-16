@@ -32,6 +32,50 @@ export default function HealthBuddyQA() {
 これらの情報を踏まえ、
 血圧管理に関するアドバイスをわかりやすく教えてください。
 `;
+
+  const initialBPEnglishTextMessage = `
+I would like to ask for your opinion on the results of my blood pressure measurement.
+
+My current blood pressure readings are as follows:
+
+Systolic blood pressure (highest): ◯◯◯ mmHg
+Diastolic blood pressure (lowest): ◯◯◯ mmHg
+Based on these blood pressure values, could you please tell me what this suggests? Specifically, I would appreciate answers to the following:
+
+Are my current blood pressure values within the normal range? Or are they a cause for concern?
+What should I be mindful of in my daily life?
+Please suggest specific health food products that can help manage blood pressure. Please include the following information:
+
+Product name
+Applicant (manufacturer name)
+Approved label content (description of functions and effects)
+Precautions for consumption
+Recommended daily intake
+Based on this information, please provide clear advice on blood pressure management.
+`;
+  
+  const initialBPThaiTextMessage = `
+ขอความคิดเห็นเกี่ยวกับผลการวัดความดันโลหิต
+
+ค่าความดันโลหิตปัจจุบันมีดังนี้
+- ความดันโลหิตซิสโตลิก (ความดันโลหิตสูงสุด): ◯◯◯ มิลลิเมตรปรอท
+- ความดันโลหิตไดแอสโตลิก (ความดันโลหิตต่ำสุด): ◯◯◯ มิลลิเมตรปรอท
+
+ขอให้ช่วยอธิบายเกี่ยวกับค่าความดันโลหิตเหล่านี้   โดยเฉพาะอย่างยิ่ง ขอคำตอบเกี่ยวกับข้อต่อไปนี้:
+
+- ค่าความดันโลหิตปัจจุบันอยู่ในช่วงปกติหรือไม่ หรือเป็นสภาวะที่ต้องระวัง?
+- ควรระมัดระวังอะไรในการดำเนินชีวิต?
+
+ขอแนะนำอาหารเสริมสุขภาพที่ช่วยในการควบคุมความดันโลหิต   รวมถึงข้อมูลต่อไปนี้:
+- ชื่อผลิตภัณฑ์
+- ผู้ยื่นขอ (ชื่อผู้ผลิต)
+- คำเคลมที่ได้รับอนุญาต (คำอธิบายเกี่ยวกับฟังก์ชันและประสิทธิผล)
+- ข้อควรระวังในการบริโภค
+- ปริมาณที่แนะนำต่อวัน
+
+บนพื้นฐานของข้อมูลเหล่านี้ ขอคำแนะนำเกี่ยวกับการควบคุมความดันโลหิตอย่างชัดเจน
+`;
+
   const initialBloodGlucoseLevelTextMessage = `
 血糖値の測定結果についてご意見を伺いたいです。
 
@@ -88,12 +132,12 @@ export default function HealthBuddyQA() {
 私の名前は 鈴木 です。
 
 今日久しぶりにレストランに行ってきた。
-隣のテーブルにカップルが座っていて、ウェーターが料理を持ってきた。
-「鈴木でございます」とウェーターが言った。
+隣のテーブルにカップルが座っていて、ウェイターが料理を持ってきた。
+「鈴木でございます」とウェイターが言った。
 
 男の方が「佐藤でございます」、女の方が「田中でございます」と言った。
 
-ウェーターは肩を小刻みに震わせながら、「本日のお勧めの魚のスズキでございます」と説明していた。
+ウェイターは肩を小刻みに震わせながら、「本日のお勧めの魚のスズキでございます」と説明していた。
 
 ささやかな血圧の高まりを感じたので、一つ特定保健用食品を提案してください。
 乾燥スープかゼリーでお願いします。
@@ -226,14 +270,15 @@ export default function HealthBuddyQA() {
     inputElement = (
       <>
 
-      {/* ボタンのリスト */}
+      {/* button list */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
         <button onClick={() => handleButtonClick(initialBPTextMessage)}>血圧</button>
         <button onClick={() => handleButtonClick(initialBloodGlucoseLevelTextMessage)}>血糖値</button>
-        <button onClick={() => handleButtonClick(initialBoneMineralDensityTextMessage)}>骨密度</button>
+        {/* <button onClick={() => handleButtonClick(initialBoneMineralDensityTextMessage)}>骨密度</button> */}
         <button onClick={() => handleButtonClick(initlalSupportTextMessage)}>雑談</button>
+        <button onClick={() => handleButtonClick(initialBPEnglishTextMessage)}>Blood Pressure</button>
+        <button onClick={() => handleButtonClick(initialBPThaiTextMessage)}> ความดันโลหิต(タイ語 血圧)</button>
       </div>
-
       <div align="right">
         <textarea style={{resize: "none", width: "530px", height: "380px"}}
 	          value={inputText}

@@ -3,6 +3,7 @@ import os
 import sqlalchemy
 import tempfile
 import google.auth
+import vertexai
 from cloudevents.http import from_http
 from flask import Flask, request
 from google.cloud import storage
@@ -13,6 +14,10 @@ from langchain_google_vertexai import VertexAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import AnalyzeDocumentChain
+from vertexai import generative_models
+
+vertexai.init(location='asia-northeast1')
+generation_model = generative_models.GenerativeModel('gemini-1.5-flash-001')
 
 storage_client = storage.Client()
 llm = VertexAI(
@@ -227,6 +232,28 @@ def answer_question():
     resp = {
         'answer': answer,
         'source': source
+    }
+
+    return resp, 200
+
+def get_response(prompt, temperature=0.0):
+    response = generation_model.generate_content(
+        prompt, generation_config={'temperature': temperature, 'max_output_tokens': 8192})
+    return response.text.lstrip()
+
+@app.route('/api/translation', methods=['POST'])
+def answer_translation():
+    json_data = request.get_json()
+    question = json_data['question']
+    # Join multiple lines into a single line
+    question = ' '.join(question.splitlines())
+
+    prompt = '{} に翻訳してください。'.format(question)
+    answer = get_response(prompt)
+    
+    resp = {
+        'answer': answer,
+        'source': [],
     }
 
     return resp, 200
