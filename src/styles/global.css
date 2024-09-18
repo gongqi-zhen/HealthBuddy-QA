@@ -26,6 +26,10 @@ button:disabled {
   background-color: #cccccc;
 }
 
+button.submit {
+  background-color: #FFA500; /* 明るいオレンジ */
+}
+
 .circle {
   display: inline-block;
   background: #0075c2;

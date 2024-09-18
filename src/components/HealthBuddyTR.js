@@ -222,7 +222,8 @@ Google Cloud の AI と Computing プロダクトを少なくとも一つづつ�
       </div>
       <div align="right">
         <button disabled={buttonDisabled}
-	        onClick={getAnswer}>翻訳する</button>
+	        onClick={getAnswer}
+          className="submit">翻訳する</button>
       </div>
       </>
     );

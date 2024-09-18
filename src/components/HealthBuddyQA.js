@@ -298,7 +298,8 @@ Based on this information, please provide clear advice on blood pressure managem
       </div>            
       <div align="right">
         <button disabled={buttonDisabled}
-	        onClick={getAnswer}>Submit</button>
+	        onClick={getAnswer}
+          className="submit">質問する</button>
       </div>
       </>
     );
