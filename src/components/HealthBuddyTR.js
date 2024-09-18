@@ -47,6 +47,26 @@ Google Cloud の AI と Computing プロダクトを少なくとも一つづつ�
   const handleButtonClick = (text) => {
     setInputText(text);
   };
+  
+  const handleButtonClickJP= (text) => {
+    setInputText((prevText) => prevText + ' 日本語');
+  }
+  
+  const handleButtonClickKR = (text) => {
+    setInputText((prevText) => prevText + ' 韓国語');
+  }
+  
+  const handleButtonClickCN = (text) => {
+    setInputText((prevText) => prevText + ' 中国語');
+  }
+  
+  const handleButtonClickTW = (text) => {
+    setInputText((prevText) => prevText + ' 台湾語');
+  }
+  
+  const handleButtonClickHK = (text) => {
+    setInputText((prevText) => prevText + ' 広東語');
+  }
 
   const handleButtonClickEN = (text) => {
     setInputText((prevText) => prevText + ' 英語');
@@ -54,6 +74,14 @@ Google Cloud の AI と Computing プロダクトを少なくとも一つづつ�
   
   const handleButtonClickTH = (text) => {
     setInputText((prevText) => prevText + ' タイ語');
+  }
+  
+  const handleButtonClickES = (text) => {
+    setInputText((prevText) => prevText + ' スペイン語');
+  }
+  
+  const handleButtonClickAR = (text) => {
+    setInputText((prevText) => prevText + ' アラビア語');
   }
 
   // Automatically scrolling up to show the last message.
@@ -178,12 +206,19 @@ Google Cloud の AI と Computing プロダクトを少なくとも一つづつ�
                   onChange={(event) => setInputText(event.target.value)} />
       </div>            
       {/* button list */}
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
+        <button onClick={(handleButtonClickKR)}>韓国語に</button>
+        <button onClick={(handleButtonClickCN)}>中国語に</button>
+        <button onClick={(handleButtonClickTW)}>台湾語に</button>
+        <button onClick={(handleButtonClickHK)}>広東語に</button>
         <button onClick={(handleButtonClickEN)}>英語に</button>
         <button onClick={(handleButtonClickTH)}>タイ語に</button>
-        <button onClick={() => handleButtonClick(translate_to_EN)}>例1</button>
-        <button onClick={() => handleButtonClick(translate_to_TW)}>例2</button>
-        <button onClick={() => handleButtonClick(translate_to_ID)}>例3</button>
+        <button onClick={(handleButtonClickES)}>スペイン語に</button>
+        <button onClick={(handleButtonClickAR)}>アラビア語に</button>
+        <button onClick={(handleButtonClickJP)}>日本語に</button>
+        <button onClick={() => handleButtonClick(translate_to_EN)}>例文</button>
+        {/* <button onClick={() => handleButtonClick(translate_to_TW)}>例2</button> */}
+        {/* <button onClick={() => handleButtonClick(translate_to_ID)}>例3</button> */}
       </div>
       <div align="right">
         <button disabled={buttonDisabled}

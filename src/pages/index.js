@@ -26,7 +26,8 @@ export default function SmartDrivePage() {
         <SmartDrive />
         <br/>
         <button onClick={() => signOut(auth)}>Logout</button>
-        <br/><Link href="/HealthBuddyQA">HealthBuddy QA Service</Link>
+        <br/><Link href="/HealthBuddyQA">ドキュメントQA</Link>
+        <br/><Link href="/HealthBuddyTR">翻訳</Link>
       </>
     );
   } else {

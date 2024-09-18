@@ -11,8 +11,8 @@ export default function HealthBuddyQA() {
 血圧計の測定結果についてご意見を伺いたいです。
 
 1. 血圧の現在の数値は次の通りです。
-   - 収縮期血圧（最高血圧）: ◯◯◯ mmHg
-   - 拡張期血圧（最低血圧）: ◯◯◯ mmHg
+   - 収縮期血圧（最高血圧）: 130 mmHg
+   - 拡張期血圧（最低血圧）: 85 mmHg
 
 2. これらの血圧値から考えられることを教えてください。
    具体的には、以下の点について回答をお願いします。
@@ -38,8 +38,8 @@ I would like to ask for your opinion on the results of my blood pressure measure
 
 My current blood pressure readings are as follows:
 
-Systolic blood pressure (highest): ◯◯◯ mmHg
-Diastolic blood pressure (lowest): ◯◯◯ mmHg
+Systolic blood pressure (highest): 130 mmHg
+Diastolic blood pressure (lowest): 85 mmHg
 Based on these blood pressure values, could you please tell me what this suggests? Specifically, I would appreciate answers to the following:
 
 Are my current blood pressure values within the normal range? Or are they a cause for concern?
@@ -58,8 +58,8 @@ Based on this information, please provide clear advice on blood pressure managem
 ขอความคิดเห็นเกี่ยวกับผลการวัดความดันโลหิต
 
 ค่าความดันโลหิตปัจจุบันมีดังนี้
-- ความดันโลหิตซิสโตลิก (ความดันโลหิตสูงสุด): ◯◯◯ มิลลิเมตรปรอท
-- ความดันโลหิตไดแอสโตลิก (ความดันโลหิตต่ำสุด): ◯◯◯ มิลลิเมตรปรอท
+- ความดันโลหิตซิสโตลิก (ความดันโลหิตสูงสุด): 120 มิลลิเมตรปรอท
+- ความดันโลหิตไดแอสโตลิก (ความดันโลหิตต่ำสุด): 80 มิลลิเมตรปรอท
 
 ขอให้ช่วยอธิบายเกี่ยวกับค่าความดันโลหิตเหล่านี้   โดยเฉพาะอย่างยิ่ง ขอคำตอบเกี่ยวกับข้อต่อไปนี้:
 
@@ -80,9 +80,8 @@ Based on this information, please provide clear advice on blood pressure managem
 血糖値の測定結果についてご意見を伺いたいです。
 
 1. 血糖値とHbA1cの現在の数値は次の通りです。
-   - 空腹時血糖値 : ◯◯◯ mg/dL
-   - 食後2時間血糖値 : ◯◯◯ mg/dL
-   - HbA1c : ◯◯◯ %
+   - 空腹時血糖値 : 100 mg/dL
+   - HbA1c : 5.6 %
 
 2. これらの血糖値から考えられることを教えてください。
    具体的には、以下の点について回答をお願いします。
@@ -107,9 +106,9 @@ Based on this information, please provide clear advice on blood pressure managem
 骨密度の測定結果についてご意見を伺いたいです。
 
 1. 骨密度の現在の測定値は次の通りです。
-   - 腰椎（L1-L4）の骨密度 : ◯◯◯ g/cm²
-   - 大腿骨近位部（大腿骨頸部）の骨密度 : ◯◯◯ g/cm²
-   - 全身平均骨密度 : ◯◯◯ g/cm²
+   - 腰椎（L1-L4）の骨密度 : 0.905 g/cm²
+   - 大腿骨近位部（大腿骨頸部）の骨密度 : 0.905 g/cm²
+   - 全身平均骨密度 : 0.905 g/cm²
 
 2. これらの骨密度値から考えられることを教えてください。
    具体的には、以下の点について回答をお願いします。
@@ -127,6 +126,18 @@ Based on this information, please provide clear advice on blood pressure managem
 
 これらの情報を踏まえ、
 骨密度管理に関するアドバイスをわかりやすく教えてください。
+`;
+  const initialOnakaTextMessage = `
+お腹の調子を改善または維持するために役立つ特定保健用食品やサプリメントを提案してください。
+   以下の情報を含めてください。
+   - 商品名
+   - 申請者（メーカー名）
+   - 許可を受けた表示内容（機能や効果に関する記述）
+   - 摂取する上での注意事項
+   - 1日あたりの摂取目安量
+
+これらの情報を踏まえ、
+お腹の調子管理に関するアドバイスをわかりやすく教えてください。
 `;
   const initlalSupportTextMessage = `
 私の名前は 鈴木 です。
@@ -273,11 +284,12 @@ Based on this information, please provide clear advice on blood pressure managem
       {/* button list */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
         <button onClick={() => handleButtonClick(initialBPTextMessage)}>血圧</button>
-        <button onClick={() => handleButtonClick(initialBloodGlucoseLevelTextMessage)}>血糖値</button>
-        {/* <button onClick={() => handleButtonClick(initialBoneMineralDensityTextMessage)}>骨密度</button> */}
-        <button onClick={() => handleButtonClick(initlalSupportTextMessage)}>雑談</button>
         <button onClick={() => handleButtonClick(initialBPEnglishTextMessage)}>Blood Pressure</button>
         <button onClick={() => handleButtonClick(initialBPThaiTextMessage)}> ความดันโลหิต(タイ語 血圧)</button>
+        <button onClick={() => handleButtonClick(initialBloodGlucoseLevelTextMessage)}>血糖値</button>
+        <button onClick={() => handleButtonClick(initialOnakaTextMessage)}>お腹の調子</button>
+        {/* <button onClick={() => handleButtonClick(initialBoneMineralDensityTextMessage)}>骨密度</button> */}
+        {/* <button onClick={() => handleButtonClick(initlalSupportTextMessage)}>雑談</button> */}
       </div>
       <div align="right">
         <textarea style={{resize: "none", width: "530px", height: "380px"}}

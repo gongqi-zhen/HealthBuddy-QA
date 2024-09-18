@@ -24,7 +24,8 @@ export default function HealthBuddyTRPage() {
         <HealthBuddyTR />
         <br/>
         <button onClick={() => signOut(auth)}>Logout</button>
-        <br/><Link href="/HealthBuddyQA">Back to QA Service</Link>
+        <br/><Link href="/HealthBuddyQA">ドキュメントQA</Link>
+        <br/><Link href="/">スマートドライブ</Link>
       </>
     );
   } else {
