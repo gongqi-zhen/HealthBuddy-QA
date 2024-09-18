@@ -10,4 +10,4 @@ https://healthbuddy-qa-frontend-service-658068769407.asia-northeast1.run.app/
 ```
 
 ### Video demo link
-[![サービス紹介動画](https://github.com/user-attachments/assets/a82de9d3-7858-4ff7-b5b4-222d24a6732f)](https://youtu.be/y0cxFgFTzU4)
+[![サービス紹介動画](https://github.com/user-attachments/assets/2c816ee8-7789-408e-bc69-a5eeeed448f3)](https://youtu.be/y0cxFgFTzU4)
