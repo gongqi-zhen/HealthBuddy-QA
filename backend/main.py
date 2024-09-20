@@ -202,11 +202,15 @@ def answer_question():
 
     with pool.connect() as db_conn:
         search_stmt = sqlalchemy.text(
-            'SELECT filename, page, content, \
+            'SELECT filename, page, content, similarity \
+            FROM ( \
+                SELECT filename, page, content, \
                     1 - (embedding <=> :question) AS similarity \
-             FROM docs_embeddings \
-             WHERE uid=:uid \
-             ORDER BY similarity DESC LIMIT 5;'
+                    FROM docs_embeddings \
+                    WHERE uid=:uid \
+            ) AS subquery \
+            WHERE similarity > 0.65 \
+            ORDER BY similarity DESC LIMIT 5;'
         )
         parameters = {'uid': uid, 'question': str(question_embedding)}
         results = db_conn.execute(search_stmt, parameters=parameters)
