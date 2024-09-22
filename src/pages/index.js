@@ -22,7 +22,8 @@ export default function SmartDrivePage() {
   if (loginUser) {
     element = (
       <>
-        <h1><CurrentTime /></h1>
+        <h1>スマートドライブ</h1>
+        <h2><CurrentTime /></h2>
         <SmartDrive />
         <br/>
         <button onClick={() => signOut(auth)}>Logout</button>

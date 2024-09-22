@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { auth, signInWithGoogle } from "lib/firebase";
 import { signOut } from "firebase/auth";
 import HealthBuddyTR from "components/HealthBuddyTR";
+import CurrentTime from "components/CurrentTime";
 
 export default function HealthBuddyTRPage() {
   const [loginUser, setLoginUser] = useState(null);
@@ -21,6 +22,8 @@ export default function HealthBuddyTRPage() {
   if (loginUser) {
     element = (
       <>
+        <h1>翻訳</h1>
+        <h2><CurrentTime /></h2>
         <HealthBuddyTR />
         <br/>
         <button onClick={() => signOut(auth)}>Logout</button>

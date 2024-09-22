@@ -30,6 +30,12 @@ button.submit {
   background-color: #FFA500; /* 明るいオレンジ */
 }
 
+.time-display {
+  font-size: 1.2rem; /* 大きめのフォントサイズ */
+  font-weight: bold; /* 太字にする */
+  color: #333; /* 見やすい暗めの灰色 */
+}
+
 .circle {
   display: inline-block;
   background: #0075c2;
