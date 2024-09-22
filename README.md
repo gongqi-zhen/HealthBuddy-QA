@@ -26,3 +26,7 @@ Google Cloud AI プロダクト
 Google Cloud コンピュート プロダクト
  - Cloud Run
  - Google Compute Engine 
+
+
+### 注意事項
+[注意事項](https://github.com/gongqi-zhen/HealthBuddy-QA/blob/main/docs/notes.md)

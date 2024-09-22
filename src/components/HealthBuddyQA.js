@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { auth } from "lib/firebase";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export default function HealthBuddyQA() {
 
@@ -159,6 +160,24 @@ Based on this information, please provide clear advice on blood pressure managem
   const [chatData, setChatData] = useState(chatDataInit);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [inputText, setInputText] = useState("");
+  const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
+
+  // 録音を開始・停止する関数
+  const handleSpeechRecognition = () => {
+    if (listening) {
+      SpeechRecognition.stopListening();
+    } else {
+      // 日本語の音声認識を有効化
+      SpeechRecognition.startListening({ continuous: true, language: 'ja-JP' });
+    }
+  };
+
+  // 録音開始時にtranscriptをリセット
+  useEffect(() => {
+    if (listening) {
+      resetTranscript();
+    }
+  }, [listening]);
 
   const handleButtonClick = (text) => {
     setInputText(text);
@@ -174,6 +193,13 @@ Based on this information, please provide clear advice on blood pressure managem
     scrollUp();
   });
 
+  // Handle speech input
+  useEffect(() => {
+    if (transcript !== "" && !listening) {
+      setInputText(transcript);
+      resetTranscript();
+    }
+  }, [transcript, listening]);
 
   const getAnswer = async () => {
     const callBackend = async (question) => {
@@ -280,7 +306,6 @@ Based on this information, please provide clear advice on blood pressure managem
   if (buttonDisabled === false) {
     inputElement = (
       <>
-
       {/* button list */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
         <button onClick={() => handleButtonClick(initialBPTextMessage)}>血圧</button>
@@ -290,6 +315,17 @@ Based on this information, please provide clear advice on blood pressure managem
         <button onClick={() => handleButtonClick(initialOnakaTextMessage)}>お腹の調子</button>
         {/* <button onClick={() => handleButtonClick(initialBoneMineralDensityTextMessage)}>骨密度</button> */}
         {/* <button onClick={() => handleButtonClick(initlalSupportTextMessage)}>雑談</button> */}
+      </div>
+      <div>
+      {/* Voice Input Button */}
+      {browserSupportsSpeechRecognition && (
+          <div align="right" style={{ marginBottom: '20px' }}>
+            <button onClick={handleSpeechRecognition}
+            className="voice-input">
+              {listening ? '録音中' : '音声入力'}
+            </button>
+          </div>
+        )}
       </div>
       <div align="right">
         <textarea style={{resize: "none", width: "530px", height: "380px"}}

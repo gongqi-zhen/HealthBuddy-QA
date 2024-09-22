@@ -30,6 +30,10 @@ button.submit {
   background-color: #FFA500; /* 明るいオレンジ */
 }
 
+button.voice-input {
+  background-color: #218838; /* 濃い緑 */
+}
+
 .time-display {
   font-size: 1.2rem; /* 大きめのフォントサイズ */
   font-weight: bold; /* 太字にする */
