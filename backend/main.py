@@ -17,11 +17,11 @@ from langchain.chains import AnalyzeDocumentChain
 from vertexai import generative_models
 
 vertexai.init(location='asia-northeast1')
-generation_model = generative_models.GenerativeModel('gemini-1.5-flash-001')
+generation_model = generative_models.GenerativeModel('gemini-1.5-flash-002')
 
 storage_client = storage.Client()
 llm = VertexAI(
-    model_name='gemini-1.5-flash-001', location='asia-northeast1',
+    model_name='gemini-1.5-flash-002', location='asia-northeast1',
     temperature=0.1, max_output_tokens=1024)
 embeddings = VertexAIEmbeddings(
     model_name='textembedding-gecko-multilingual@001',
