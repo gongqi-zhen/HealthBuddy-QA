@@ -12,8 +12,13 @@ gcloud builds submit . --tag $REPO/healthbuddy-qa-frontend-service
 gcloud iam service-accounts create llm-app-frontend
 export SERVICE_ACCOUNT=llm-app-frontend@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
 
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role "roles/firebase.sdkAdminServiceAgent"
 
-
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role "roles/run.invoker"
 ```
 
 ### .env.local
