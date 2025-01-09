@@ -15,6 +15,14 @@ export SERVICE_ACCOUNT=llm-app-backend@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount
 gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 --member serviceAccount:$SERVICE_ACCOUNT \
 --role "roles/aiplatform.user"
+
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role "roles/storage.objectUser"
+
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role "roles/cloudsql.client"
 ```
 
 ### service deploy
