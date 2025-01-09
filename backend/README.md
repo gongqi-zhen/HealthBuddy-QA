@@ -80,6 +80,26 @@ curl -X POST \
 ```
 
 ## Eventarcのトリガーを設定する
+```
+gcloud services enable eventarc.googleapis.com
+P142(Eventarc)の設定
+KMS_SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $GOOGLE_CLOUD_PROJECT)
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$KMS_SERVICE_ACCOUNT \
+--role roles/pubsub.publisher
+
+gcloud iam service-accounts create eventarc-trigger
+SERVICE_ACCOUNT=eventarc-trigger@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role roles/eventarc.eventReceiver
+
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role roles/run.invoker
+```
+
 ### ファイル作成・更新 (type=google.cloud.storage.object.v1.finalized)
 ```
 export SERVICE_ACCOUNT=eventarc-trigger@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
