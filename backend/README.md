@@ -3,7 +3,7 @@
 
 ### container build
 ```
-REPO=asia-northeast1-docker.pkg.dev/ai-hackathon-app-433705/container-image-repo
+REPO=asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/container-image-repo
 gcloud builds submit . --tag $REPO/healthbuddy-qa-backend-service
 ```
 
