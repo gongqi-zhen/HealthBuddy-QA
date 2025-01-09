@@ -9,7 +9,11 @@ gcloud builds submit . --tag $REPO/healthbuddy-qa-frontend-service
 
 ### service account
 ```
+gcloud iam service-accounts create llm-app-frontend
 export SERVICE_ACCOUNT=llm-app-frontend@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
+
+
+
 ```
 
 ### .env.local
