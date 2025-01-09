@@ -9,7 +9,12 @@ gcloud builds submit . --tag $REPO/healthbuddy-qa-backend-service
 
 ### service account
 ```
+gcloud iam service-accounts create llm-app-backend
 export SERVICE_ACCOUNT=llm-app-backend@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member serviceAccount:$SERVICE_ACCOUNT \
+--role "roles/aiplatform.user"
 ```
 
 ### service deploy
