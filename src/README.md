@@ -1,5 +1,35 @@
 ## HealthBuddy-QA frontend deploy
 
+### .env.local
+```
+gcloud run services list --platform managed \
+--format="table[no-heading](URL)" --filter="metadata.name:healthbuddy-qa-backend-service" 
+
+https://healthbuddy-qa-backend-service.*****.run.app
+
+HEALTHBUDDY_QA_API="https://healthbuddy-qa-backend-service.*****.run.app/api/question"
+HEALTHBUDDY_TRANSLATION_API="https://healthbuddy-qa-backend-service.*****.run.app/api/translation"
+```
+
+### .firebase.js
+```
+vi ~/src/.firebase.js
+
+firebaseでアプリ作成後に、firebaseConfig変数をexportして保存する。
+firebase storageのdomainが appspot.com -> firebaseapp.com に変わっている
+
+export const firebaseConfig = {
+  apiKey: "AI...",
+  authDomain: "PROJECT.firebaseapp.com",
+  projectId: "PROJECT-ID",
+  storageBucket: "PROJECT-ID.firebasestorage.app",
+  messagingSenderId: "12345",
+  appId: "1:12345:web:2d....",
+  measurementId: "G-....."
+};
+
+```
+
 ### container build
 ```
 REPO=asia-northeast1-docker.pkg.dev/ai-hackathon-app-433705/container-image-repo
@@ -19,19 +49,6 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 --member serviceAccount:$SERVICE_ACCOUNT \
 --role "roles/run.invoker"
-```
-
-### .env.local
-```
-gcloud run services list --platform managed \
---format="table[no-heading](URL)" --filter="metadata.name:healthbuddy-qa-backend-service" 
-
-https://healthbuddy-qa-backend-service.*****.run.app
-
-HEALTHBUDDY_QA_API="https://healthbuddy-qa-backend-service.*****.run.app/api/question"
-
-HEALTHBUDDY_TRANSLATION_API="https://healthbuddy-qa-backend-service.*****.run.app/api/translation"
-
 ```
 
 ### service deploy
